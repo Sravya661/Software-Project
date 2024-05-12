@@ -1,13 +1,39 @@
 <div class="login-container">
     <div class="left-login">
-        <span class="findcozy-logo">
-            <img src="../../assets/images/Find Cozy_transparent.png" alt="log" width="100%">
-        </span>
+        <div class="login" *ngIf="loginpage">
+            <span class="findcozy-logo">
+                <img src="../../assets/images/Find Cozy_transparent.png" alt="log" width="100%">
+            </span>
 
-        <input class="field" type="text" placeholder="Enter Email" [(ngModel)]="userEmail">
-        <input class="field" type="password" placeholder="Enter Password" [(ngModel)]="userPassword">
-        <button class="field btn" (click)="openHome()">LOGIN</button>
-        <span class="singup-link">Don't have a accout yet? SignUp</span>
+            <input class="field" type="text" placeholder="Enter Email" [(ngModel)]="userEmail">
+            <input class="field" type="password" placeholder="Enter Password" [(ngModel)]="userPassword">
+            <button class="field btn" (click)="openHome()">LOGIN</button>
+            <span class="singup-link">
+                <span (click)="openSignUp()">Don't have a accout yet? SignUp</span>
+            </span>
+            <span class="singup-link right">
+                <span (click)="openSignUp()">Forgot Password</span>
+            </span>
+        </div>
+        <div class="signup-container" *ngIf="signUpPage">
+            <span class="findcozy-logo">
+                <img (click)="openLogin()" class="logo" src="../../assets/images/Find Cozy_transparent.png" alt="log" width="100%">
+            </span>
+
+            <input class="field" type="text" placeholder="Enter Email" [(ngModel)]="userEmail">
+            <button class="field btn" (click)="sendOTP()">Send OTP</button>
+            <input class="field" type="text" placeholder="Enter OTP" [(ngModel)]="userCode">
+            <button class="field btn" (click)="verify()">Verify</button>
+        </div>
+        <div class="password-container" *ngIf="passwordPage">
+            <span class="findcozy-logo">
+                <img (click)="openLogin()" class="logo" src="../../assets/images/Find Cozy_transparent.png" alt="log" width="100%">
+            </span>
+
+            <input class="field" type="text" placeholder="Enter Password" [(ngModel)]="pass">
+            <input class="field" type="text" placeholder="Confirm Password" [(ngModel)]="passConfirm">
+            <button class="field btn" (click)="setPassword()">Confirm</button>
+        </div>
     </div>
     <div class="right-login">
         <div class="tag-head">
