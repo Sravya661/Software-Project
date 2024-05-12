@@ -1,0 +1,131 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.left-login{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-right: 5%;
+}
+.field{
+    height: 40px;
+    margin: 10px 0px;
+    font-size: 0.9rem;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    padding: 0px 15px;
+    color: #337483;
+    outline: none;
+    border:  none;
+    opacity: 0.8;
+
+}
+.btn{
+    font-size: 1.2rem;
+    color: white;
+    background-color: #003744;
+    box-shadow: 1px 1px 2px white;
+}
+.btn:hover{
+    font-size: large;
+    cursor: pointer;
+}
+.singup-link{
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+.singup-link:hover{
+    color: #337483;
+}
+
+
+
+
+.right-login{
+    width: 55%;
+    font-family:"Impact";
+    color: white;
+}
+.tag-head{
+    font-size: 7rem;
+}
+.tag-line{
+    font-size: 5rem;
+    position: relative;
+}
+
+
+/* animation slide up *//* Animation slide up */
+
+.rotatingText-adjective {
+    position: relative;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+  
+  .rotatingText-adjective:nth-child(1) {
+    animation: rotate-text-up-1 5s infinite;
+    animation-delay: 0s;
+  }
+  
+  .rotatingText-adjective:nth-child(2) {
+    animation: rotate-text-up-2 5s infinite;
+    animation-delay: 1s;
+  }
+  
+  .rotatingText-adjective:nth-child(3) {
+    animation: rotate-text-up-3 5s infinite;
+    animation-delay: 2s;
+  }
+  
+  /* Keyframes for first text */
+  @keyframes rotate-text-up-1 {
+    0% {
+      transform: translate3d(0, 80px, 0);
+      opacity: 0;
+    }
+  
+    20%, 80% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translate3d(0, -40px, 0);
+      opacity: 0;
+    }
+  }
+  
+  /* Keyframes for second text */
+  @keyframes rotate-text-up-2 {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 80px, 0);
+    }
+  
+    40%, 100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  /* Keyframes for third text */
+  @keyframes rotate-text-up-3 {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 80px, 0);
+    }
+  
+    40%, 100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  

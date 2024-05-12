@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.body{
+    background-color: #337483;
+}
+.mat-mdc-snack-bar-container{
+    color: #003744;
+    font-family: Tahoma;
+}
+.mdc-snackbar__label{
+    background-color: white;
+    border-radius: 2px;
+}
+
