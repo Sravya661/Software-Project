@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -10,7 +9,6 @@ import { map } from 'rxjs/operators';
   selector: 'app-home',
   standalone: true,
   imports: [
-    BrowserModule,
     HttpClientModule,
     CarouselModule
   ],

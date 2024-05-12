@@ -1,0 +1,14 @@
+.head{
+    display: flex;
+    padding: 3%;
+    justify-content: space-between;
+}
+.head-title{
+    height: 10vh;
+}
+.profile{
+    cursor: pointer;
+}
+.profile:hover{
+    transform: scale(1.2);
+}
