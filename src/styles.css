@@ -6,8 +6,15 @@
     color: #003744;
     font-family: Tahoma;
 }
+
 .mdc-snackbar__label{
     background-color: white;
-    border-radius: 2px;
+    border-radius: 2px 0px 0px 2px;
 }
-
+.mat-mdc-button .mat-mdc-button-touch-target{
+    background-color: white;
+    border-radius: 0px 2px 2px 0px;
+}
+.mat-mdc-button .mat-mdc-button-touch-target:hover{
+    background-color: rgb(194, 194, 194);
+}
