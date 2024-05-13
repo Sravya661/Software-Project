@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClient } from '@angular/common/http';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-home',
   standalone: true,
   imports: [
-    HttpClientModule,
     CarouselModule
   ],
   templateUrl: './home.component.html',
@@ -24,7 +21,6 @@ export class HomeComponent {
   userEmail = '';
 
   constructor(
-    private http: HttpClient,
     private popUpService : PopupService,
     private snackBar : MatSnackBar
   ){ }

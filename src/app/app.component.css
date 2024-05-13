@@ -11,4 +11,5 @@
     /* Additional styles */
     /* Add a semi-transparent overlay */
     background-color: #347483;
+    overflow: auto;
 }

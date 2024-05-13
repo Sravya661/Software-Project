@@ -1,0 +1,92 @@
+.pay {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #003744;
+    background-color: rgb(255,255,255,0.3);
+}
+
+.payment-container {
+    display: flex;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    max-width: 800px;
+    background-color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.payment-options {
+    flex: 1;
+}
+
+.payment-options h2 {
+    text-align: center;
+    color: #003744;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li.payment-option {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #337483;
+    transition: color 0.3s ease;
+}
+
+li.payment-option:hover {
+    color: #007bff;
+}
+
+.payment-form {
+    flex: 2;
+    padding: 0 20px;
+}
+
+
+.payment-info.active {
+    display: block; 
+}
+
+h2 {
+    text-align: center;
+    color:#003744
+}
+
+form {
+    text-align: left;
+    
+}
+
+label {
+    font-weight: bold;
+    color: #337483;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #003744;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

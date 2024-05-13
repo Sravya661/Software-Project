@@ -1,0 +1,92 @@
+<div class="pay">
+    <div class="payment-container">
+        <div class="payment-options">
+            <h2>Payment Options</h2>
+            <ul>
+                <li class="payment-option" (click)="selectPaymentOption('credit-card')">Credit/Debit Card</li>
+                <li class="payment-option" (click)="selectPaymentOption('upi')">UPI</li>
+                <li class="payment-option" (click)="selectPaymentOption('online-banking')">Online Banking</li>
+                <li class="payment-option" (click)="selectPaymentOption('amazon-wallet')">Amazon</li>
+                <li class="payment-option" (click)="selectPaymentOption('paytm-wallet')">Paytm</li>
+                <li class="payment-option" (click)="selectPaymentOption('phone-wallet')">Phonepe</li>
+            </ul>
+        </div>
+        <div class="payment-form">
+            <div *ngIf="selectedOption === 'credit-card'" class="payment-info">
+                <h2>Credit/Debit Card Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" required><br>
+
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" name="expiry" placeholder="MM/YYYY" required><br>
+
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+            <div *ngIf="selectedOption === 'upi'" class="payment-info">
+                <h2>UPI Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="upi-id">UPI ID</label>
+                    <input type="text" id="upi-id" name="upi-id" required><br>
+
+                    <label for="otp">OTP</label>
+                    <input type="text" id="otp" name="otp" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+            <div *ngIf="selectedOption === 'online-banking'" class="payment-info">
+                <h2>Online Banking Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="userid">User ID</label>
+                    <input type="text" id="userid" name="userid" required><br>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+            <div *ngIf="selectedOption === 'amazon-wallet'" class="payment-info">
+                <h2>Amazon Wallet Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="amazon-email">Amazon Email</label>
+                    <input type="email" id="amazon-email" name="amazon-email" required><br>
+
+                    <label for="amazon-password">Amazon Password</label>
+                    <input type="password" id="amazon-password" name="amazon-password" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+            <div *ngIf="selectedOption === 'paytm-wallet'" class="payment-info">
+                <h2>Paytm Wallet Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="paytm-mobile">Paytm Mobile Number</label>
+                    <input type="text" id="paytm-mobile" name="paytm-mobile" required><br>
+
+                    <label for="paytm-pin">Paytm PIN</label>
+                    <input type="password" id="paytm-pin" name="paytm-pin" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+            <div *ngIf="selectedOption === 'phone-wallet'" class="payment-info">
+                <h2>Phone Wallet Details</h2>
+                <form (ngSubmit)="makePayment()">
+                    <label for="phone-number">Phonepe Number</label>
+                    <input type="text" id="phone-number" name="phone-number" required><br>
+
+                    <label for="phone-pin">Phonepe Wallet PIN</label>
+                    <input type="password" id="phone-pin" name="phone-pin" required><br>
+
+                    <button type="submit">Make Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
