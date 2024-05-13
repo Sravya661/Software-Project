@@ -57,7 +57,11 @@ li.payment-option:hover {
 
 h2 {
     text-align: center;
-    color:#003744
+    color:#003744;
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.5rem;
 }
 
 form {
@@ -89,4 +93,9 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+.close{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
 }

@@ -1,7 +1,7 @@
 <div class="pay">
     <div class="payment-container">
         <div class="payment-options">
-            <h2>Payment Options</h2>
+            <h3>Payment Options</h3>
             <ul>
                 <li class="payment-option" (click)="selectPaymentOption('credit-card')">Credit/Debit Card</li>
                 <li class="payment-option" (click)="selectPaymentOption('upi')">UPI</li>
@@ -12,6 +12,9 @@
             </ul>
         </div>
         <div class="payment-form">
+            <div class="close" [routerLink]="['/home']">
+                <img src="../../../assets/images/close_48dp_FILL0_wght700_GRAD200_opsz48.png" alt="Close Button" title="Close" height="24px" >
+            </div>
             <div *ngIf="selectedOption === 'credit-card'" class="payment-info">
                 <h2>Credit/Debit Card Details</h2>
                 <form (ngSubmit)="makePayment()">

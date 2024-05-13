@@ -5,15 +5,46 @@
                 <img src="../../assets/images/Find Cozy_transparent.png" alt="Logo" height="50px">
             </span>
             <span class="profile">
-                <img (click)="logout()" src="../../assets/images/logout_48dp_FILL0_wght500_GRAD0_opsz48.png" alt="Logout" height="40px" title="Logout">
+                <img (click)="logout()" src="../../assets/images/logout_48dp_FILL0_wght500_GRAD0_opsz48.png" alt="Logout" height="30px" title="Logout">
             </span>
         </div>
         <div class="nav-bar">
-
+            <span>
+                <select id="propertyType" name="propertyType" class="field" [(ngModel)]="selectedPropertyType">
+                    <option value="">Select Property Type</option>
+                    <option *ngFor="let type of propertyTypes" [value]="type">{{ type }}</option>
+                  </select>
+            </span>
+            <span class="hr"></span>
+            <span>
+                <select id="propertyType" name="propertyType"  class="field" [(ngModel)]="selectedLocation">
+                    <option value="">Select Location</option>
+                    <option *ngFor="let type of locations" [value]="type">{{ type }}</option>
+                  </select>
+            </span>
+            <span class="hr"></span>
+            <span>
+                <select id="propertyType" name="propertyType"  class="field" [(ngModel)]="selectedNumRooms">
+                    <option value="">Select No of Rooms</option>
+                    <option *ngFor="let type of noOfRooms" [value]="type">{{ type }}</option>
+                  </select>
+            </span>
+            <span class="hr"></span>
+            <span>
+                <select id="propertyType" name="propertyType"  class="field" [(ngModel)]="selectedPriceRange">
+                    <option value="">Price Range</option>
+                    <option *ngFor="let type of priceRanges" [value]="type">{{ type }}</option>
+                  </select>
+            </span>
+            <span class="hr"></span>
+            <span class="search-bar">
+                <input type="text" placeholder="Search" [(ngModel)]="searchText"  class="field">
+                <img class="image-search-button"(click)="search()" src="../../assets/images/search_24dp_FILL0_wght700_GRAD200_opsz24.png" alt="Search Button" height="30px">
+            </span>
         </div>
         <div class="home-content">
             <div class="carousel">
-                
+
             </div>
         </div>
     </div>

@@ -1,7 +1,32 @@
 .head{
     display: flex;
-    padding: 3%;
+    padding: 1% 3% 0% 3%;
     justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+.nav-bar{
+    display: flex;
+    margin: 0% 10%;
+    justify-content: space-evenly;
+    background-color:#f6fcfd;
+    padding: 5px;
+    border-radius: 5px;
+}
+.field{
+    height: 40px;
+    border:none;
+    outline: none;
+    color: #003744;
+    border-radius: 5px;
+    padding: 0px 20px;
+    background-color:#f6fcfd;
 }
 .head-title{
     height: 10vh;
@@ -11,4 +36,23 @@
 }
 .profile:hover{
     transform: scale(1.2);
+}
+.hr{
+    width: 5px;
+    background-color: #003744;
+    border-radius: 2px;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+}
+.image-search-button{
+    cursor: pointer;
+}
+
+.home-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
 }
