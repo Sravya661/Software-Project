@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { PopupService } from '../popup.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { dir } from 'console';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ import { dir } from 'console';
   imports: [
     CarouselModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

@@ -32,7 +32,6 @@ export class PayComponent {
       this.route.navigate(['/home']);
   }
   selectPaymentOption(option: string): void {
-    console.log('Payment is made by ',option)
     this.selectedOption = option;
   }
 
