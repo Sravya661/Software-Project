@@ -49,13 +49,13 @@
                         <span class="pro-image Image-container">
                             <span class="image-wrapper" >
                                 <span class="img-top">
-                                <img  class="each-photo" *ngIf="property.Image && property.Image.length > 0" [src]="property.Image[photoIndex]" alt="Photo">
+                                <img  class="each-photo" *ngIf="property.Image && property.Image.length > 0" [src]="property.Image[property.index]" alt="Photo">
                                 <span  class="no-image"*ngIf="property.Image.length<1">
                                     <span>No Image Found</span>
                                 </span>
                                 <span class="direction">
-                                    <img (click)="navigateImage('prev')" class="left-btn" src="../../assets/images/chevron_left_24dp_FILL0_wght400_GRAD200_opsz24(1).png" alt="left button" >
-                                    <img (click)="navigateImage('next')" class="right-btn" src="../../assets/images/chevron_right_24dp_FILL0_wght400_GRAD200_opsz24.png" alt="Right buttin">
+                                    <img (click)="property.index = (property.index -1+property.Image.length)%property.Image.length;" class="left-btn" src="../../assets/images/chevron_left_24dp_FILL0_wght400_GRAD200_opsz24(1).png" alt="left button" >
+                                    <img (click)="property.index = (property.index +1)%property.Image.length;" class="right-btn" src="../../assets/images/chevron_right_24dp_FILL0_wght400_GRAD200_opsz24.png" alt="Right buttin">
                                 </span>
                             </span>
                              </span>
