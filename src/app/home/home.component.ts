@@ -67,6 +67,15 @@ export class HomeComponent {
     console.log('Search button and prpperty type : ', this.selectedPropertyType, ' and the price ranfe is ', this.selectedPriceRange, ' and the no of rooms is ', this.selectedNumRooms, ' and the query search is ', this.searchText, ' and the location is ', this.selectedLocation);
   }
 
+
+  openImageInNewTab(imageUrl: string): void {
+    if (imageUrl) {
+      window.open(imageUrl, '_blank');
+    }
+  }
+
+  
+
   properties: any[] = [
     { index : 0,
       imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',

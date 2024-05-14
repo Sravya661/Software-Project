@@ -49,7 +49,7 @@
                         <span class="pro-image Image-container">
                             <span class="image-wrapper" >
                                 <span class="img-top">
-                                <img  class="each-photo" *ngIf="property.Image && property.Image.length > 0" [src]="property.Image[property.index]" alt="Photo">
+                                <img  class="each-photo" *ngIf="property.Image && property.Image.length > 0" [src]="property.Image[property.index]" alt="Photo" (click)="openImageInNewTab(property.Image[property.index])" title="View Full Size Image">
                                 <span  class="no-image"*ngIf="property.Image.length<1">
                                     <span>No Image Found</span>
                                 </span>
