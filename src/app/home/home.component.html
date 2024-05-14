@@ -45,9 +45,22 @@
         <div class="home-content">
             <div class="carousel">
                 <div class="property-list">
-                    <div *ngFor="let property of properties" class="property-card">
-                      <span class="pro-image"><img [src]="property.imageUrl" alt="Property Image" class="Image-container">
-                      </span>
+                    <div *ngFor="let property of properties;" class="property-card">
+                        <span class="pro-image Image-container">
+                            <span class="image-wrapper" >
+                                <span class="img-top">
+                                <img  class="each-photo" *ngIf="property.Image && property.Image.length > 0" [src]="property.Image[photoIndex]" alt="Photo">
+                                <span  class="no-image"*ngIf="property.Image.length<1">
+                                    <span>No Image Found</span>
+                                </span>
+                                <span class="direction">
+                                    <img (click)="navigateImage('prev')" class="left-btn" src="../../assets/images/chevron_left_24dp_FILL0_wght400_GRAD200_opsz24(1).png" alt="left button" >
+                                    <img (click)="navigateImage('next')" class="right-btn" src="../../assets/images/chevron_right_24dp_FILL0_wght400_GRAD200_opsz24.png" alt="Right buttin">
+                                </span>
+                            </span>
+                             </span>
+                        </span>
+                        
 
                       <div class="property-details">
                         <div class="property-details-more">
