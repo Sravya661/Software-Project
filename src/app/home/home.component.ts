@@ -67,7 +67,89 @@ export class HomeComponent {
 
 
 
-
-
+  properties: any[] = [
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
+      type: 'Apartment',
+      location: 'Downtown',
+      rent: 2000,
+      rooms: 2,
+      address: '123 Main St, Downtown',
+      parking: 'Available for 1 Cars'
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+      type: 'House',
+      location: 'Suburbs',
+      rent: 2500,
+      rooms: 3,
+      address: '456 Oak St, Suburbs',
+      parking: 'Available for 2 Cars'
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+      type: 'Condo',
+      location: 'Beachfront',
+      rent: 3000,
+      rooms: 1,
+      address: '789 Beach Blvd, Beachfront',
+      parking: 'Not Available'
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
+      type: 'Apartment',
+      location: 'Downtown',
+      rent: 2000,
+      rooms: 2,
+      address: '123 Main St, Downtown',
+      parking: 'Not Available'
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+      type: 'House',
+      location: 'Suburbs',
+      rent: 2500,
+      rooms: 3,
+      address: '456 Oak St, Suburbs',
+      parking: 'Not Available'
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+      type: 'Condo',
+      location: 'Beachfront',
+      rent: 3000,
+      rooms: 1,
+      address: '789 Beach Blvd, Beachfront',
+      parking: 'Available for 2 Cars '
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
+      type: 'Apartment',
+      location: 'Downtown',
+      rent: 2000,
+      rooms: 2,
+      address: '123 Main St, Downtown',
+      parking: 'Available for 2 Cars '
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+      type: 'House',
+      location: 'Suburbs',
+      rent: 2500,
+      rooms: 3,
+      address: '456 Oak St, Suburbs',
+      parking: 'Available for 2 Cars '
+    },
+    {
+      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
+      type: 'Condo',
+      location: 'Beachfront',
+      rent: 3000,
+      rooms: 1,
+      address: '789 Beach Blvd, Beachfront',
+      parking: 'Available for 2 Cars'
+    },
+    // Add more properties with address information as needed
+  ];
 
 }

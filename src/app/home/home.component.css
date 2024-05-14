@@ -50,9 +50,89 @@
     cursor: pointer;
 }
 
+
 .home-content{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2%;
+}
+.carousel{
+    width: 60%;
+    height: 70vh;
+    background-color: #ffffff;
+    border : 2px solid white;
+    color: White;
+    padding: 1%;
+    overflow-y: auto;
+}
+
+.property-card{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    background-color: #003744;
+}
+.pro-image{
+    width: 70%;
+    border-radius: 2px;
+    max-height: 50vh;
+    overflow: hidden;
+
+}
+.Image-conatianer{
+    height: 100%;
+    overflow: hidden;
+
+}
+.property-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     align-items: center;
+
+}
+.property-details-more{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2%;
+    font-family: 'Tahoma';
+    margin-left: 5%;
+}
+.property-info{
+font-family: 'Tahoma';
+margin: 5px;
+}
+.property-type{
+    font-size: 2rem;
+    margin: 0px 0px 0px 5px;
+}
+.property-address{
+    width: 15vw;
+    font-size: 1rem;
+    margin: 0px 0px 0px 5px;
+    display: flex;
+    justify-content: center;
+}
+.add{
+    font-size: 1.35rem;
+    margin: 20px 0px 0px 0px;
+}
+.ruler-hr{
+    align-self: center;
+    width: 80%;
+    height: 5px;
+    background-color: white;
+    border-radius: 2px;
+    margin: 20px 0px;
+}
+.btn-book-now{
+    font-size: 1.1rem;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    margin: 30px 20px 0px 20px;
+    color: #003744;
 }

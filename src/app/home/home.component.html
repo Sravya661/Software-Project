@@ -44,7 +44,30 @@
         </div>
         <div class="home-content">
             <div class="carousel">
+                <div class="property-list">
+                    <div *ngFor="let property of properties" class="property-card">
+                      <span class="pro-image"><img [src]="property.imageUrl" alt="Property Image" class="Image-container">
+                      </span>
 
+                      <div class="property-details">
+                        <div class="property-details-more">
+                            <!-- <span class="property-type">{{ property.type }}</span>
+                            <span class="ruler-hr"></span> -->
+                            <span class="property-address">
+                                <span class="add">{{ property.address }}</span>
+                            </span>
+                            <span class="ruler-hr"></span>
+                            <span class="property-info">Location: {{ property.location }}</span>
+                            <span class="property-info">Rent: ${{ property.rent }}/month</span>
+                            <span class="property-info">Rooms: {{ property.rooms }}</span>
+                            <span class="property-info">Parking: {{ property.parking }}</span>
+                            
+                            <button class="btn-book-now">Book Now</button>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+                  
             </div>
         </div>
     </div>
