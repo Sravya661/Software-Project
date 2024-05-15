@@ -8,170 +8,119 @@ import { PopupService } from '../popup.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { dir } from 'console';
 import { RouterLink } from '@angular/router';
+import { CallApiService } from '../call-api.service';
+import { Property, Type ,Range,Room,location} from '../interfaces';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CarouselModule,
-    CommonModule,
-    FormsModule,
-    RouterLink
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    standalone: true,
+    imports: [
+        CarouselModule,
+        CommonModule,
+        FormsModule,
+        RouterLink
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
 
-  items$!: Observable<any[]>;
-  data = [];
-  propertyTypes = ['House', 'Apartment', 'Condo', 'Townhouse', 'Villa', 'Duplex', 'Penthouse', 'Cottage', 'Bungalow', 'Farmhouse'];
-  locations = ['City Center', 'Suburbs', 'Beachfront', 'Mountain View', 'Lakefront', 'Rural', 'Gated Community', 'Downtown'];
-  noOfRooms = ['1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5+ Bedrooms'];
-  priceRanges = ['Under $100,000', '$100,000 - $200,000', '$200,000 - $300,000', '$300,000 - $400,000', '$400,000 - $500,000', 'Over $500,000'];
-  selectedPropertyType: string = '';
-  selectedLocation: string = '';
-  selectedNumRooms: string = '';
-  selectedPriceRange: string = '';
-  searchText: string = '';
-  userEmail = '';
+    //   propertyTypes = ['House', 'Apartment', 'Condo', 'Townhouse', 'Villa', 'Duplex', 'Penthouse', 'Cottage', 'Bungalow', 'Farmhouse'];
+    propertyTypes!: Type[];
+    priceRanges!: Range[];
+    locations!: location[];
+    // locations = ['City Center', 'Suburbs', 'Beachfront', 'Mountain View', 'Lakefront', 'Rural', 'Gated Community', 'Downtown'];
+    // noOfRooms = ['1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5+ Bedrooms'];
+    // priceRanges = ['Under $100,000', '$100,000 - $200,000', '$200,000 - $300,000', '$300,000 - $400,000', '$400,000 - $500,000', 'Over $500,000'];
+    noOfRooms!: Room[];
+    selectedPropertyType: string = '';
+    selectedLocation: string = '';
+    selectedNumRooms: string = '';
+    selectedPriceRange: string = '';
+    searchText: string = '';
+    userEmail = '';
+    properties!: Property[];
 
-  constructor(
-    private popUpService: PopupService,
-    private snackBar: MatSnackBar
-  ) { 
-    
-  }
+    constructor(
+        private popUpService: PopupService,
+        private snackBar: MatSnackBar,
+        private callApiService: CallApiService
+    ) {
 
-
-  ngOnInit(): void {
-    this.userEmail = 'choudhary98akash@gmal.com'
-    // this.items$ = [];
-    // Fetch data from your API (replace 'apiUrl' with your backend endpoint)
-    // this.items$ = this.http.get<any[]>('apiUrl').pipe(
-    //   map(response => response.data) // Assuming your API response contains an array of data
-    // );
-  }
-
-  logout() {
-    const snackBarRef = this.snackBar.open('Are you sure you want to logout?', 'Yes', {
-      duration: 5000
-    });
-    snackBarRef.onAction().subscribe(() => {
-      console.log('User confirmed logout. Implement logout logic here.');
-    });
-  }
-
-  search() {
-    console.log('Search button and prpperty type : ', this.selectedPropertyType, ' and the price ranfe is ', this.selectedPriceRange, ' and the no of rooms is ', this.selectedNumRooms, ' and the query search is ', this.searchText, ' and the location is ', this.selectedLocation);
-  }
-
-
-  openImageInNewTab(imageUrl: string): void {
-    if (imageUrl) {
-      window.open(imageUrl, '_blank');
     }
-  }
 
-  
 
-  properties: any[] = [
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
-      type: 'Apartment',
-      location: 'Downtown',
-      rent: 2000,
-      rooms: 2,
-      address: '123 Main St, Downtown',
-      parking: 'Available for 1 Cars',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80','https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
-      type: 'House',
-      location: 'Suburbs',
-      rent: 2500,
-      rooms: 3,
-      address: '456 Oak St, Suburbs',
-      parking: 'Available for 2 Cars',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-      type: 'Condo',
-      location: 'Beachfront',
-      rent: 3000,
-      rooms: 1,
-      address: '789 Beach Blvd, Beachfront',
-      parking: 'Not Available',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80','https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
+    ngOnInit(): void {
+        this.userEmail = 'choudhary98akash@gmal.com';
 
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
-      type: 'Apartment',
-      location: 'Downtown',
-      rent: 2000,
-      rooms: 2,
-      address: '123 Main St, Downtown',
-      parking: 'Not Available',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80','https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
 
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
-      type: 'House',
-      location: 'Suburbs',
-      rent: 2500,
-      rooms: 3,
-      address: '456 Oak St, Suburbs',
-      parking: 'Not Available',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80','https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
+        this.callApiService.fetchProperties().then(properties => {
+            this.properties = properties;
+        }).catch(error => {
+            console.error('Error fetching properties:', error);
+            this.popUpService.toast('Data not available! Please try Again Later');
+        });
 
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-      type: 'Condo',
-      location: 'Beachfront',
-      rent: 3000,
-      rooms: 1,
-      address: '789 Beach Blvd, Beachfront',
-      parking: 'Available for 2 Cars ',
-      Image : []
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80',
-      type: 'Apartment',
-      location: 'Downtown',
-      rent: 2000,
-      rooms: 2,
-      address: '123 Main St, Downtown',
-      parking: 'Available for 2 Cars ',
-      Image : ['https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80','https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60','https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80','https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80']
 
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
-      type: 'House',
-      location: 'Suburbs',
-      rent: 2500,
-      rooms: 3,
-      address: '456 Oak St, Suburbs',
-      parking: 'Available for 2 Cars ',
-      Image : []
-    },
-    { index : 0,
-      imageUrl: 'https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80',
-      type: 'Condo',
-      location: 'Beachfront',
-      rent: 3000,
-      rooms: 1,
-      address: '789 Beach Blvd, Beachfront',
-      parking: 'Available for 2 Cars',
-      Image : []
-    },
-    // Add more properties with address information as needed
-  ];
+        this.callApiService.fetchType().then(data => {
+            this.propertyTypes = data;
+        }).catch(error => {
+            console.error('Error fetching properties:', error);
+            this.popUpService.toast('Property Type data not available! Please try Again Later');
+        });
 
+        this.callApiService.fetchRange().then(data => {
+            this.priceRanges = data;
+        }).catch(error => {
+            console.error('Error fetching properties:', error);
+            this.popUpService.toast('Range data not available! Please try Again Later');
+        });
+
+
+        this.callApiService.fetchRooms().then(data => {
+            this.noOfRooms = data;
+        }).catch(error => {
+            console.error('Error fetching properties:', error);
+            this.popUpService.toast('Room data not available! Please try Again Later');
+        });
+
+
+        this.callApiService.fetchLocation().then(data => {
+            this.locations = data;
+        }).catch(error => {
+            console.error('Error fetching properties:', error);
+            this.popUpService.toast('Location data not available! Please try Again Later');
+        });
+
+
+
+
+
+
+
+
+
+
+    }
+
+    logout() {
+        const snackBarRef = this.snackBar.open('Are you sure you want to logout?', 'Yes', {
+            duration: 5000
+        });
+        snackBarRef.onAction().subscribe(() => {
+            console.log('User confirmed logout. Implement logout logic here.');
+        });
+    }
+
+    search() {
+        console.log('Search button and prpperty type : ', this.selectedPropertyType, ' and the price ranfe is ', this.selectedPriceRange, ' and the no of rooms is ', this.selectedNumRooms, ' and the query search is ', this.searchText, ' and the location is ', this.selectedLocation);
+    }
+
+
+    openImageInNewTab(imageUrl: string): void {
+        if (imageUrl) {
+            window.open(imageUrl, '_blank');
+        }
+    }
 }
