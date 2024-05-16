@@ -25,3 +25,7 @@ export interface location{
   _id: string;
   locationType : string
 }
+export interface CodeResponse{
+  OtpGenrated: boolean;
+  Otp: number 
+}

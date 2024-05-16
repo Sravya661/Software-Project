@@ -7,9 +7,10 @@ import { map } from 'rxjs/operators';
 import { PopupService } from '../popup.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { dir } from 'console';
-import { RouterLink } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 import { CallApiService } from '../call-api.service';
-import { Property, Type ,Range,Room,location} from '../interfaces';
+import { Property, Type, Range, Room, location } from '../interfaces';
+
 
 @Component({
     selector: 'app-home',
@@ -25,38 +26,50 @@ import { Property, Type ,Range,Room,location} from '../interfaces';
 })
 export class HomeComponent {
 
-
-    //   propertyTypes = ['House', 'Apartment', 'Condo', 'Townhouse', 'Villa', 'Duplex', 'Penthouse', 'Cottage', 'Bungalow', 'Farmhouse'];
     propertyTypes!: Type[];
     priceRanges!: Range[];
     locations!: location[];
-    // locations = ['City Center', 'Suburbs', 'Beachfront', 'Mountain View', 'Lakefront', 'Rural', 'Gated Community', 'Downtown'];
-    // noOfRooms = ['1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5+ Bedrooms'];
-    // priceRanges = ['Under $100,000', '$100,000 - $200,000', '$200,000 - $300,000', '$300,000 - $400,000', '$400,000 - $500,000', 'Over $500,000'];
     noOfRooms!: Room[];
+    properties!: Property[];
     selectedPropertyType: string = '';
     selectedLocation: string = '';
     selectedNumRooms: string = '';
     selectedPriceRange: string = '';
     searchText: string = '';
     userEmail = '';
-    properties!: Property[];
+    loggedIn! : any;
+    
 
     constructor(
         private popUpService: PopupService,
         private snackBar: MatSnackBar,
-        private callApiService: CallApiService
+        private callApiService: CallApiService,
+        private route : Router
     ) {
 
     }
 
 
     ngOnInit(): void {
-        this.userEmail = 'choudhary98akash@gmal.com';
+        // this.userEmail = 'choudhary98akash@gmal.com';
+        // this.session = this.callApiService.session;
+        // this.session = localStorage.getItem('session');
+        // if(!this.session){
+        //     this.popUpService.toast('Please login first.');
+        //     this.route.navigate(['/']);
+        // }
+
+        this.loggedIn = localStorage.getItem('session');
+        if(this.loggedIn === 'false'){
+            this.popUpService.toast('Please login first');
+            this.route.navigate(['/']);
+        }
 
 
-        this.callApiService.fetchProperties().then(properties => {
-            this.properties = properties;
+
+
+        this.callApiService.fetchProperties().then(data => {
+            this.properties = data;
         }).catch(error => {
             console.error('Error fetching properties:', error);
             this.popUpService.toast('Data not available! Please try Again Later');
@@ -93,15 +106,6 @@ export class HomeComponent {
             this.popUpService.toast('Location data not available! Please try Again Later');
         });
 
-
-
-
-
-
-
-
-
-
     }
 
     logout() {
@@ -109,8 +113,12 @@ export class HomeComponent {
             duration: 5000
         });
         snackBarRef.onAction().subscribe(() => {
-            console.log('User confirmed logout. Implement logout logic here.');
+            // console.log('User confirmed logout. Implement logout logic here.');
+            this.popUpService.toast('Logged out successfully');
+            localStorage.setItem('session', 'false');
+            this.route.navigate(['/'])
         });
+        
     }
 
     search() {

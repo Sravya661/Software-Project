@@ -9,10 +9,10 @@
             <input class="field" type="password" placeholder="Enter Password" [(ngModel)]="userPassword">
             <button class="field btn" (click)="openHome()">LOGIN</button>
             <span class="singup-link">
-                <span (click)="openSignUp()">Don't have a accout yet? SignUp</span>
+                <span (click)="openSignUp();forgotPassword = false;">Don't have a accout yet? SignUp</span>
             </span>
             <span class="singup-link right">
-                <span (click)="openSignUp()">Forgot Password</span>
+                <span (click)="openSignUp();forgotPassword = true;">Forgot Password</span>
             </span>
         </div>
         <div class="signup-container" *ngIf="signUpPage">
@@ -21,7 +21,7 @@
             </span>
 
             <input class="field" type="text" placeholder="Enter Email" [(ngModel)]="userEmail">
-            <button class="field btn" (click)="sendOTP()">Send OTP</button>
+            <button [disabled]="sendOTPDisabled" class="field btn" (click)="sendOTP()">Send OTP</button>
             <input class="field" type="text" placeholder="Enter OTP" [(ngModel)]="userCode">
             <button class="field btn" (click)="verify()">Verify</button>
         </div>
