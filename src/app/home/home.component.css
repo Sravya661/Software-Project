@@ -19,6 +19,15 @@
     padding: 5px;
     border-radius: 5px;
 }
+.map{
+    background-color: rgb(1,1,1,0.001);
+    border: none;
+    outline: none;
+}
+.map:hover{
+   cursor: pointer;
+   transform: scale(1.1);
+}
 .field{
     height: 40px;
     border:none;
@@ -32,11 +41,17 @@
     height: 10vh;
 }
 .profile{
+    display: flex;
     cursor: pointer;
+    align-items: center;
 }
-.profile:hover{
+.logout{
+    padding-left: 15px;
+}
+.logout:hover{
     transform: scale(1.2);
 }
+
 .hr{
     width: 5px;
     background-color: #003744;
@@ -138,7 +153,8 @@ margin: 5px;
     justify-content: center;
 }
 .add{
-    font-size: 1.35rem;
+    padding: 10px;
+    font-size: 1rem;
     margin: 20px 0px 0px 0px;
 }
 .ruler-hr{

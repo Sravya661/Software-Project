@@ -31,11 +31,12 @@ export class HomeComponent {
     locations!: location[];
     noOfRooms!: Room[];
     properties!: Property[];
-    selectedPropertyType: string = '';
-    selectedLocation: string = '';
-    selectedNumRooms: string = '';
-    selectedPriceRange: string = '';
-    searchText: string = '';
+    selectedPropertyType ='';
+    selectedLocation = '';
+    selectedNumRooms = '';
+    selectedPriceRange = '';
+    // range!this.selectedPriceRange.range;
+    searchText = '';
     userEmail = '';
     loggedIn! : any;
     
@@ -51,19 +52,21 @@ export class HomeComponent {
 
 
     ngOnInit(): void {
-        // this.userEmail = 'choudhary98akash@gmal.com';
-        // this.session = this.callApiService.session;
-        // this.session = localStorage.getItem('session');
-        // if(!this.session){
-        //     this.popUpService.toast('Please login first.');
-        //     this.route.navigate(['/']);
-        // }
 
-        this.loggedIn = localStorage.getItem('session');
-        if(this.loggedIn === 'false'){
+        //improper login sanitization
+        if (typeof window === 'undefined') {
+            this.loggedIn = false;
             this.popUpService.toast('Please login first');
             this.route.navigate(['/']);
+
+        }else{
+              this.loggedIn = localStorage.getItem('session');
+              if(this.loggedIn === 'false'){
+                  this.popUpService.toast('Please login first');
+                  this.route.navigate(['/']);
+              }
         }
+        
 
 
 
@@ -94,7 +97,7 @@ export class HomeComponent {
         this.callApiService.fetchRooms().then(data => {
             this.noOfRooms = data;
         }).catch(error => {
-            console.error('Error fetching properties:', error);
+            console.error('Error fetching roomdata:', error);
             this.popUpService.toast('Room data not available! Please try Again Later');
         });
 
@@ -102,7 +105,7 @@ export class HomeComponent {
         this.callApiService.fetchLocation().then(data => {
             this.locations = data;
         }).catch(error => {
-            console.error('Error fetching properties:', error);
+            console.error('Error fetching location:', error);
             this.popUpService.toast('Location data not available! Please try Again Later');
         });
 
@@ -118,11 +121,22 @@ export class HomeComponent {
             localStorage.setItem('session', 'false');
             this.route.navigate(['/'])
         });
+    
         
     }
 
     search() {
-        console.log('Search button and prpperty type : ', this.selectedPropertyType, ' and the price ranfe is ', this.selectedPriceRange, ' and the no of rooms is ', this.selectedNumRooms, ' and the query search is ', this.searchText, ' and the location is ', this.selectedLocation);
+        
+        console.log('Property: ', this.selectedPropertyType, ' Range :  ', this.selectedPriceRange, ' and the no of rooms is ', this.selectedNumRooms, ' and the query search is ', this.searchText, ' and the location is ', this.selectedLocation,' from component');
+        this.callApiService.search(this.selectedPropertyType,this.selectedLocation,this.selectedNumRooms,this.selectedPriceRange,this.searchText )
+        .then(data => {
+            this.properties = data;
+        }).catch(error => {
+            // console.error('Error fetching properties:', error);
+            this.popUpService.toast('No data Found');
+        });
+        this.resetSelected();
+
     }
 
 
@@ -130,5 +144,11 @@ export class HomeComponent {
         if (imageUrl) {
             window.open(imageUrl, '_blank');
         }
+    }
+    resetSelected(){
+        this.selectedLocation = '';
+        this.selectedNumRooms = '';
+        this.selectedPriceRange = '';
+        this.selectedPropertyType = '';
     }
 }

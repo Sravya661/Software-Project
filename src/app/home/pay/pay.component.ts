@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PopupService } from '../../popup.service';
 import { FormsModule } from '@angular/forms';
@@ -16,15 +16,30 @@ import { RouterLink } from '@angular/router';
   templateUrl: './pay.component.html',
   styleUrl: './pay.component.css'
 })
-export class PayComponent {
+export class PayComponent implements OnInit{
   selectedOption: string = 'credit-card'; // Track the selected payment option
-  Rent ='2000';
-
+  loggedIn!:any;
 
   constructor(
     private popUpService : PopupService,
     private route : Router
   ) { }
+  ngOnInit(): void {
+    //sanitization
+    if (typeof window === 'undefined') {
+      this.loggedIn = false;
+      this.popUpService.toast('Please login first');
+      this.route.navigate(['/']);
+
+  }else{
+        this.loggedIn = localStorage.getItem('session');
+        if(this.loggedIn === 'false'){
+            this.popUpService.toast('Please login first');
+            this.route.navigate(['/']);
+        }
+  }
+
+  }
 
 
   makePayment(){

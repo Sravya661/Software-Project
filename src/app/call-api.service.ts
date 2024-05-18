@@ -38,11 +38,30 @@ export class CallApiService {
           else if(msg === 'Password does not match!'){
             this.popUpService.toast("Invalid Password");
           }
-        console.log("msg in api response ",msg);
         return msg;
           
       } catch (error) {
         this.popUpService.toast("Not able to verify account, please try again later!");
+        return undefined;
+      }
+    }
+
+
+
+  
+  async updateMap(): Promise<string | undefined> {
+    try {
+        const response = await axios.get('http://localhost:3000/updateMap');
+        const msg = response.data;
+          if (msg === 'Map data updated.'){
+            // this.popUpService.toast("DAta loaded");
+          }
+          else{
+            this.popUpService.toast("Couldn't update Map in response");
+          }
+          return msg;
+      } catch (error) {
+        this.popUpService.toast("Couldn't update Map failed api");
         return undefined;
       }
     }
@@ -83,6 +102,25 @@ export class CallApiService {
       } catch (error) {
         this.popUpService.toast("Failed to update password.");
         return undefined;
+      }
+    }
+
+  async search(type : string, location : string ,rooms : string ,range : string ,searchText :string): Promise<any> {
+    try {
+        console.log('Values for the type ',type, ' and location is ',location,' and the ',' the range is ',range, ' and the search text is ',searchText);
+        const response = await axios.post('http://localhost:3000/search', {type: type,location:location,rooms:rooms,range:range,searchText:searchText});
+        console.log('Response in api ',response.data);
+        const data = response.data;
+          if (data === 'No Data Found'){
+            this.popUpService.toast("No data found with the enquired data.");
+            return [];
+          }
+
+        return data;
+
+      } catch (error) {
+        this.popUpService.toast("Failed to fetch data.");
+        return [];
       }
     }
 

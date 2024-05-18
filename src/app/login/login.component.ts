@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
   ) { }
   ngOnInit(): void {
     if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
-      // localStorage.setItem('session', 'false');
+      localStorage.setItem('session', 'false');
     }
   }
 
@@ -88,6 +88,9 @@ export class LoginComponent implements OnInit{
     if(this.pass === '' || this.passConfirm === ''){
         this.popUpService.toast('Fields cannot be left left blank');
     }
+    else if(!this.containsSixDigitNumber(this.pass)){
+        this.popUpService.toast('Pass should be atleast 6 character long.');
+    }
     else if(!(this.pass === this.passConfirm)){
         this.popUpService.toast("Password doesn't match, Please try again!")
     }
@@ -95,11 +98,6 @@ export class LoginComponent implements OnInit{
          //api to change password and reset password and want to add regex for password
 
       if(this.forgotPassword){
-        // callTheupdate password
-        // After success please login again
-        //on failure write a toast message that password couldnot be updated
-        //return /login
-
         const msg = await this.callApiService.updatePassoword(this.userEmail,this.passConfirm);
         if((msg === 'Password updated successfully') || (msg==='User not found')){
           this.route.navigate(['/']);
@@ -156,11 +154,17 @@ export class LoginComponent implements OnInit{
     this.passwordPage = true;
 
   }
-  containsSixDigitNumber(inputString: string): boolean {
-    const regexPattern = /^\d{6}$/; // Regex pattern to match exactly 6 digits
 
+  containsSixDigitNumber(inputString: string): boolean {
+    const regexPattern = /\d{6,}/; // Regex pattern to match at least 6 digits
+  
     return regexPattern.test(inputString);
   }
+  // containsSixDigitNumber(inputString: string): boolean {
+  //   const regexPattern = /^\d{6}$/; // Regex pattern to match exactly 6 digits
+
+  //   return regexPattern.test(inputString);
+  // }
 
   isValidEmail(email: string): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
