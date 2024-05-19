@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit{
         this.popUpService.toast('Fields cannot be left left blank');
     }
     else if(!this.containsSixDigitNumber(this.pass)){
-        this.popUpService.toast('Pass should be atleast 6 character long.');
+        this.popUpService.toast('Password  should be of atleast 6 charaters.');
     }
     else if(!(this.pass === this.passConfirm)){
         this.popUpService.toast("Password doesn't match, Please try again!")
